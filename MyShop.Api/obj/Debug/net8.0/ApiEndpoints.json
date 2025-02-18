@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "ShowCategories",
+    "RelativePath": "api/Category",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "GetCategory",
+    "RelativePath": "api/Category/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

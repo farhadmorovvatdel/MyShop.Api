@@ -15,6 +15,6 @@ namespace MyShop.Infrastructure.Context
             
         }
 
-        public DbSet<Category>
+        public DbSet<Category> categories { get; set; }
     }
 }

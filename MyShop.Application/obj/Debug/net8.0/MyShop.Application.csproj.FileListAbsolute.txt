@@ -1,0 +1,16 @@
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\bin\Debug\net8.0\MyShop.Application.deps.json
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\bin\Debug\net8.0\MyShop.Application.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\bin\Debug\net8.0\MyShop.Application.pdb
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\bin\Debug\net8.0\MyShop.Domain.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\bin\Debug\net8.0\MyShop.Domain.pdb
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.Application.csproj.AssemblyReference.cache
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.Application.AssemblyInfoInputs.cache
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.Application.AssemblyInfo.cs
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.Application.csproj.CoreCompileInputs.cache
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.Application.sourcelink.json
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.A.D52B9BDA.Up2Date
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.Application.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\refint\MyShop.Application.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\MyShop.Application.pdb
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Application\obj\Debug\net8.0\ref\MyShop.Application.dll

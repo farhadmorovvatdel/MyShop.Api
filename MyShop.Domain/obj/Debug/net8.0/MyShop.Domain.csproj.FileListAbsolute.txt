@@ -1,0 +1,12 @@
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\bin\Debug\net8.0\MyShop.Domain.deps.json
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\bin\Debug\net8.0\MyShop.Domain.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\bin\Debug\net8.0\MyShop.Domain.pdb
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\MyShop.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\MyShop.Domain.AssemblyInfoInputs.cache
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\MyShop.Domain.AssemblyInfo.cs
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\MyShop.Domain.csproj.CoreCompileInputs.cache
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\MyShop.Domain.sourcelink.json
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\MyShop.Domain.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\refint\MyShop.Domain.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\MyShop.Domain.pdb
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Domain\obj\Debug\net8.0\ref\MyShop.Domain.dll
