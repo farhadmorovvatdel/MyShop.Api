@@ -17,5 +17,7 @@ namespace MyShop.Infrastructure.Context
 
         public DbSet<Category> categories { get; set; }
         public DbSet<User> users { get; set; }
+
+        public DbSet<Role> roles { get; set; }
     }
 }

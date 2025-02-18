@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,18 @@ namespace MyShop.Domain.Entites
 
         public string ?ImageUrl { get; set; }
 
+        public string Password { get; set; }
+
         public DateTime CreateDate { get; set; } = DateTime.Now;
+
+        #region relations
+        [ForeignKey(nameof(RoleId))]
+        public Role Role { get; set; }
+
+
+        public int RoleId { get; set; }
+
+        #endregion
 
 
     }

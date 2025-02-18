@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MyShop.Application.CategoryService;
 using MyShop.Application.CategoryServices;
+using MyShop.Application.RoleServices;
+using MyShop.Application.UserService;
 using MyShop.Domain.Interface;
 using MyShop.Infrastructure.Context;
 using MyShop.Infrastructure.Repositorservice;
@@ -17,8 +19,14 @@ builder.Services.AddDbContext<MyShopContext>(op =>
 {
     op.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+#region Service And Repository
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<CategoryServiceInterface, Categoryservice>();
+builder.Services.AddScoped<IUserInterface,UserRepository>();
+builder.Services.AddScoped<IUserServiceInterface, UserService>();
+builder.Services.AddScoped<IRoleInterface, RoleRepository>();
+builder.Services.AddScoped<IRoleServiceInterface, RoleService>();
+#endregion
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
