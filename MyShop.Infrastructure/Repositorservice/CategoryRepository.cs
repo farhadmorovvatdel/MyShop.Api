@@ -42,7 +42,7 @@ namespace MyShop.Infrastructure.Repositorservice
             return await _context.categories.FindAsync(Id);
         }
 
-        public async Task UpdateAsyncCategory(int Id, Category category)
+        public async Task UpdateAsyncCategory(int Id,Category category)
         {
             var cat= await _context.categories.FindAsync(Id);
             _context.categories.Update(cat);

@@ -22,6 +22,29 @@ namespace MyShop.Application.CategoryServices
             _mapper = mapper;
         }
 
+        public async Task<CategoryDto> CreateCategory(CategoryDto categoryDto)
+        {
+            var cat = new Category()
+            {
+                Name = categoryDto.Name,
+                Description = categoryDto.Description,
+            };
+            await _categoryRepository.CreateAsyncCategory(cat);
+            return _mapper.Map<CategoryDto>(cat);
+
+        }
+
+        public async Task<Result> DeleteCategoryAsync(int Id)
+        {
+            var cat=await _categoryRepository.GetCategoryByIdAsync(Id);
+            if (cat == null)
+            {
+                return Result.Failure("دسته بندی مورد نظر یافت نشد");
+            }
+            await _categoryRepository.DeleteAsyncCategory(Id);
+            return Result.Success();
+        }
+
         public async Task<List<CategoryDto>> GetCategoriesAsync()
         {
             var res =await _categoryRepository.GetCategoriesAsync();
@@ -33,6 +56,19 @@ namespace MyShop.Application.CategoryServices
             var cat=await _categoryRepository.GetCategoryByIdAsync(Id);
             
             return _mapper.Map<CategoryDto>(cat);
+        }
+
+        public async Task<Result> UpdateCategoryAsync(int Id,CategoryDto categoryDto)
+        {
+            var cat=await _categoryRepository.GetCategoryByIdAsync(Id);
+            if (cat==null)
+            {
+                return Result.Failure("دسته بندی مورد نظر یافت نشد");
+            }
+            cat.Name = categoryDto.Name;
+            cat.Description = categoryDto.Description;
+            await _categoryRepository.UpdateAsyncCategory(Id,cat);
+            return Result.Success();
         }
     }
 }

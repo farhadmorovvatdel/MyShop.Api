@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.OpenApi.Writers;
 using MyShop.Application.CategoryService;
+using MyShop.Application.Dto;
 using System.Net.NetworkInformation;
 
 namespace MyShop.Api.Controllers
@@ -25,12 +27,34 @@ namespace MyShop.Api.Controllers
         [HttpGet("{Id:int}")]
         public async Task<IActionResult> GetCategory([FromRoute] int Id)
         {
-            var cat =await _categoryService.GetCategoryByIdAsync(Id);
+            var cat = await _categoryService.GetCategoryByIdAsync(Id);
             if (cat == null)
             {
                 return NotFound("دسته بندی مورد نظر یافت نشد");
             }
             return Ok(cat);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateCategory([FromBody] CategoryDto categoryDto)
+        {
+            var cat = await _categoryService.CreateCategory(categoryDto);
+            return Ok(cat);
+        }
+        [HttpDelete("delete/{Id:int}")]
+        public async Task<IActionResult> DeleteCategory([FromRoute] int Id)
+        {
+            var cat = await _categoryService.GetCategoryByIdAsync(Id);
+            if (cat == null) return NotFound("دسته بندی مورد نظر یافت نشد");
+            await _categoryService.DeleteCategoryAsync(Id);
+            return NoContent();
+        }
+        [HttpPut("update/{Id:int}")]
+        public async Task<IActionResult> UpdateCategory([FromRoute] int Id, [FromBody] CategoryDto categoryDto)
+        {
+            var cat = await _categoryService.GetCategoryByIdAsync(Id);
+            if (cat == null) return NotFound("دسته بندی مورد نظر یافت نشد");
+            await _categoryService.UpdateCategoryAsync(Id, categoryDto);
+            return NoContent();
         }
     }
 }

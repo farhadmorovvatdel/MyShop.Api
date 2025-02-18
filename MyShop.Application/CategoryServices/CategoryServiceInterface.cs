@@ -12,5 +12,10 @@ namespace MyShop.Application.CategoryService
     {
         Task<List<CategoryDto>> GetCategoriesAsync();
         Task<CategoryDto> GetCategoryByIdAsync(int Id);
+
+        Task<Result> UpdateCategoryAsync(int Id, CategoryDto categoryDto);
+
+        Task<Result> DeleteCategoryAsync(int Id);
+        Task<CategoryDto> CreateCategory(CategoryDto categoryDto);
     }
 }

@@ -11,6 +11,22 @@
   },
   {
     "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "CreateCategory",
+    "RelativePath": "api/Category",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryDto",
+        "Type": "MyShop.Application.Dto.CategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
     "Method": "GetCategory",
     "RelativePath": "api/Category/{Id}",
     "HttpMethod": "GET",
@@ -20,6 +36,43 @@
       {
         "Name": "Id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "DeleteCategory",
+    "RelativePath": "api/Category/delete/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "UpdateCategory",
+    "RelativePath": "api/Category/update/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "categoryDto",
+        "Type": "MyShop.Application.Dto.CategoryDto",
         "IsRequired": true
       }
     ],
