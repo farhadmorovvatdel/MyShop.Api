@@ -1,24 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MyShop.Application.Dto;
 using MyShop.Application.Dto.User;
+using MyShop.Application.JwtService;
 using MyShop.Application.UserService;
+using MyShop.Application.Vm.User;
 using MyShop.Domain.Entites;
 using MyShop.Infrastructure.Migrations;
 
 namespace MyShop.Api.Controllers
 {
-    [Route("api/Admin")]
+    [Route("api/")]
     [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IUserServiceInterface _userService;
-        public UserController(IUserServiceInterface userService)
+        private readonly IJwtService _jwtService;
+        public UserController(IUserServiceInterface userService,IJwtService jwtService)
         {
             _userService = userService;
+            _jwtService = jwtService;   
         }
-        [HttpPost("create")]
+        [Authorize(Policy = "AdminRole")]
+        [HttpPost("Admin/create")]
         public async Task<IActionResult> CreateUser([FromBody] UserDto model)
         {
             if (model == null)
@@ -29,8 +35,8 @@ namespace MyShop.Api.Controllers
             await _userService.CreatUser(model);
             return Created();
         }
-
-        [HttpGet("user/{Id:int}")]
+        [Authorize(Policy = "AdminRole")]
+        [HttpGet("Admin/user/{Id:int}")]
         public async Task<IActionResult> GetUser([FromRoute] int Id)
         {
             var user=await _userService.GetUserById(Id);
@@ -40,7 +46,8 @@ namespace MyShop.Api.Controllers
             }
             return Ok(user);
         }
-        [HttpGet("users")]
+        [Authorize(Policy ="AdminRole")]
+        [HttpGet("Admin/users")]
         public async Task<IActionResult> GetAllUsers()
         {
             
@@ -51,7 +58,8 @@ namespace MyShop.Api.Controllers
             }
             return Ok(users);
         }
-        [HttpPut("Update/{Id:int}")]
+        [Authorize(Policy = "AdminRole")]
+        [HttpPut("Admin/Update/{Id:int}")]
         public async Task<IActionResult> AdminUpdateUser([FromRoute] int Id, [FromBody] UpdateUserDto model)
         {
             var user= await _userService.GetUserById(Id);
@@ -67,6 +75,36 @@ namespace MyShop.Api.Controllers
             return Ok("ویرایش با موفقیت انجام شد");
 
         }
+        [Authorize(Policy = "AdminRole")]
+        [HttpDelete("Admin/Delete/{Id:int}")]
+        public async Task<IActionResult> AdminDeleteUser([FromRoute] int Id)
+        {
+            var user = await _userService.GetUserById(Id);
+            if (user == null)
+            {
+                return NotFound("کاربر مورد نظر یافت نشد");
+            }
+            await _userService.AdminDeleteUser(Id);
+            return Ok("کاربر مورد نظر با موفقیت حذف شد");
+
+        }
+        [HttpPost("User/Login")]
+        public async Task<IActionResult> UserLogin([FromBody] LoginUserVm uservm)
+        {
+            if (uservm == null)
+            {
+                return BadRequest("فیلدهای ورودی را وارد نمایید");
+            }
+            var user = await _userService.LoginUser(uservm);
+            if (user == null)
+            {
+                return NotFound("کاربری با مشخصات فوق یافت نشد");
+            }
+            var rolname=user.Role.Name;
+            var token= _jwtService.GenerateToken(user.Id, user.Email,rolname);
+            return Ok(new { Token = token });
+        }
+        
        
     }
 }

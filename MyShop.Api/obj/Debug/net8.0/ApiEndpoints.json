@@ -1,12 +1,81 @@
 [
   {
-    "ContainingType": "MyShop.Api.Controllers.UserController",
-    "Method": "GetAllUsers",
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "CreateCategory",
     "RelativePath": "api/Admin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryDto",
+        "Type": "MyShop.Application.Dto.CategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "ShowCategories",
+    "RelativePath": "api/Admin/Category",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "GetCategory",
+    "RelativePath": "api/Admin/Category/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "DeleteCategory",
+    "RelativePath": "api/Admin/Category/delete/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.CategoryController",
+    "Method": "UpdateCategory",
+    "RelativePath": "api/Admin/Category/update/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "categoryDto",
+        "Type": "MyShop.Application.Dto.CategoryDto",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -20,6 +89,22 @@
       {
         "Name": "model",
         "Type": "MyShop.Application.Dto.UserDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.UserController",
+    "Method": "AdminDeleteUser",
+    "RelativePath": "api/Admin/Delete/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -49,7 +134,7 @@
   {
     "ContainingType": "MyShop.Api.Controllers.UserController",
     "Method": "GetUser",
-    "RelativePath": "api/Admin/User/{Id}",
+    "RelativePath": "api/Admin/user/{Id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -63,82 +148,13 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MyShop.Api.Controllers.CategoryController",
-    "Method": "ShowCategories",
-    "RelativePath": "api/Category",
+    "ContainingType": "MyShop.Api.Controllers.UserController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/Admin/users",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MyShop.Api.Controllers.CategoryController",
-    "Method": "CreateCategory",
-    "RelativePath": "api/Category",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "categoryDto",
-        "Type": "MyShop.Application.Dto.CategoryDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MyShop.Api.Controllers.CategoryController",
-    "Method": "GetCategory",
-    "RelativePath": "api/Category/{Id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MyShop.Api.Controllers.CategoryController",
-    "Method": "DeleteCategory",
-    "RelativePath": "api/Category/delete/{Id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MyShop.Api.Controllers.CategoryController",
-    "Method": "UpdateCategory",
-    "RelativePath": "api/Category/update/{Id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "categoryDto",
-        "Type": "MyShop.Application.Dto.CategoryDto",
-        "IsRequired": true
-      }
-    ],
     "ReturnTypes": []
   },
   {
@@ -231,6 +247,22 @@
       {
         "Name": "model",
         "Type": "MyShop.Application.Dto.RoleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.UserController",
+    "Method": "UserLogin",
+    "RelativePath": "api/User/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uservm",
+        "Type": "MyShop.Application.Vm.User.LoginUserVm",
         "IsRequired": true
       }
     ],

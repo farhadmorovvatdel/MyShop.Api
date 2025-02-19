@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.OpenApi.Writers;
@@ -8,8 +9,9 @@ using System.Net.NetworkInformation;
 
 namespace MyShop.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Admin/")]
     [ApiController]
+    [Authorize(Policy = "AdminRole")]
     public class CategoryController : ControllerBase
     {
         private readonly CategoryServiceInterface _categoryService;
@@ -18,13 +20,13 @@ namespace MyShop.Api.Controllers
         {
             _categoryService = categoryService;
         }
-        [HttpGet]
+        [HttpGet("Category")]
         public async Task<IActionResult> ShowCategories()
         {
             var cats = await _categoryService.GetCategoriesAsync();
             return Ok(cats);
         }
-        [HttpGet("{Id:int}")]
+        [HttpGet("Category/{Id:int}")]
         public async Task<IActionResult> GetCategory([FromRoute] int Id)
         {
             var cat = await _categoryService.GetCategoryByIdAsync(Id);
@@ -40,7 +42,7 @@ namespace MyShop.Api.Controllers
             var cat = await _categoryService.CreateCategory(categoryDto);
             return Ok(cat);
         }
-        [HttpDelete("delete/{Id:int}")]
+        [HttpDelete("Category/delete/{Id:int}")]
         public async Task<IActionResult> DeleteCategory([FromRoute] int Id)
         {
             var cat = await _categoryService.GetCategoryByIdAsync(Id);
@@ -48,7 +50,7 @@ namespace MyShop.Api.Controllers
             await _categoryService.DeleteCategoryAsync(Id);
             return NoContent();
         }
-        [HttpPut("update/{Id:int}")]
+        [HttpPut("Category/update/{Id:int}")]
         public async Task<IActionResult> UpdateCategory([FromRoute] int Id, [FromBody] CategoryDto categoryDto)
         {
             var cat = await _categoryService.GetCategoryByIdAsync(Id);

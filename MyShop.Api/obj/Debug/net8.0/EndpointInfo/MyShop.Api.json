@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Category": {
+    "/api/Admin/Category": {
       "get": {
         "tags": [
           "Category"
@@ -15,13 +15,43 @@
             "description": "OK"
           }
         }
-      },
+      }
+    },
+    "/api/Admin/Category/{Id}": {
+      "get": {
+        "tags": [
+          "Category"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin": {
       "post": {
         "tags": [
           "Category"
         ],
         "requestBody": {
           "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryDto"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CategoryDto"
@@ -46,30 +76,7 @@
         }
       }
     },
-    "/api/Category/{Id}": {
-      "get": {
-        "tags": [
-          "Category"
-        ],
-        "parameters": [
-          {
-            "name": "Id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Category/delete/{Id}": {
+    "/api/Admin/Category/delete/{Id}": {
       "delete": {
         "tags": [
           "Category"
@@ -92,7 +99,7 @@
         }
       }
     },
-    "/api/Category/update/{Id}": {
+    "/api/Admin/Category/update/{Id}": {
       "put": {
         "tags": [
           "Category"
@@ -110,6 +117,11 @@
         ],
         "requestBody": {
           "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryDto"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CategoryDto"
@@ -197,6 +209,11 @@
         ],
         "requestBody": {
           "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleDto"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RoleDto"
@@ -239,6 +256,11 @@
         ],
         "requestBody": {
           "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleDto"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RoleDto"
@@ -293,6 +315,11 @@
         ],
         "requestBody": {
           "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserDto"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UserDto"
@@ -317,7 +344,7 @@
         }
       }
     },
-    "/api/Admin/User/{Id}": {
+    "/api/Admin/user/{Id}": {
       "get": {
         "tags": [
           "User"
@@ -340,7 +367,7 @@
         }
       }
     },
-    "/api/Admin": {
+    "/api/Admin/users": {
       "get": {
         "tags": [
           "User"
@@ -370,6 +397,11 @@
         ],
         "requestBody": {
           "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserDto"
@@ -383,6 +415,65 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/Delete/{Id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/Login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserVm"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserVm"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserVm"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginUserVm"
               }
             }
           }
@@ -413,6 +504,26 @@
             "type": "string",
             "format": "multiline",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginUserVm": {
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "minLength": 1,
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string",
+            "format": "password"
           }
         },
         "additionalProperties": false
@@ -456,6 +567,11 @@
           },
           "image": {
             "type": "string",
+            "nullable": true
+          },
+          "userImage": {
+            "type": "string",
+            "format": "binary",
             "nullable": true
           },
           "isActive": {

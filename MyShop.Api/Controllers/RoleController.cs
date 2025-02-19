@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using MyShop.Application.Dto;
@@ -9,6 +10,7 @@ namespace MyShop.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy ="AdminRole")]
     public class RoleController : ControllerBase
     {
         private readonly IRoleServiceInterface _roleService;
