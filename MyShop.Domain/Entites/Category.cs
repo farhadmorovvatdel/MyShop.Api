@@ -16,5 +16,7 @@ namespace MyShop.Domain.Entites
         [MaxLength (50)]
         
         public string? Description { get; set; }
+
+        public List<Product> Products { get; set; } =new List<Product>();
     }
 }

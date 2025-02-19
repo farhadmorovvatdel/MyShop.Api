@@ -19,5 +19,7 @@ namespace MyShop.Infrastructure.Context
         public DbSet<User> users { get; set; }
 
         public DbSet<Role> roles { get; set; }
+
+        public DbSet<Product> products { get; set; }    
     }
 }

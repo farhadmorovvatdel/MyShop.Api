@@ -111,6 +111,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "ShowProducts",
+    "RelativePath": "api/Admin/Products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "MyShop.Api.Controllers.UserController",
     "Method": "AdminUpdateUser",
     "RelativePath": "api/Admin/Update/{Id}",

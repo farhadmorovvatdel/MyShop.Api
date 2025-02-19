@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using MyShop.Application.CategoryService;
 using MyShop.Application.CategoryServices;
 using MyShop.Application.JwtService;
+using MyShop.Application.ProductServices;
 using MyShop.Application.RoleServices;
 using MyShop.Application.UserService;
 using MyShop.Domain.Interface;
@@ -30,7 +31,8 @@ builder.Services.AddSwaggerGen();
 #region Authorization
 builder.Services.AddAuthorization(op =>
 {
-    op.AddPolicy("UserRole", policy => policy.RequireClaim(ClaimTypes.Role,"User"));
+    //op.AddPolicy("UserRole", policy => policy.RequireRole("User"));
+    op.AddPolicy("UserRole", p => p.RequireClaim(ClaimTypes.Role, "User"));
     op.AddPolicy("AdminRole", policy => policy.RequireClaim(ClaimTypes.Role,"Admin"));
 });
 #endregion
@@ -47,6 +49,8 @@ builder.Services.AddScoped<IUserInterface, UserRepository>();
 builder.Services.AddScoped<IUserServiceInterface, UserService>();
 builder.Services.AddScoped<IRoleInterface, RoleRepository>();
 builder.Services.AddScoped<IRoleServiceInterface, RoleService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IJwtService, jwtservice>();
 #endregion
 
