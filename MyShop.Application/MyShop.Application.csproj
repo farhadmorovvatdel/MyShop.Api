@@ -21,4 +21,8 @@
     <ProjectReference Include="..\MyShop.Domain\MyShop.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Vm\Order\" />
+  </ItemGroup>
+
 </Project>

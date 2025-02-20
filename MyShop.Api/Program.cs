@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using MyShop.Application.CategoryService;
 using MyShop.Application.CategoryServices;
 using MyShop.Application.JwtService;
+using MyShop.Application.OrderServices;
 using MyShop.Application.ProductServices;
 using MyShop.Application.RoleServices;
 using MyShop.Application.UserService;
@@ -51,6 +52,9 @@ builder.Services.AddScoped<IRoleInterface, RoleRepository>();
 builder.Services.AddScoped<IRoleServiceInterface, RoleService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderInterface,OrderRepository>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IJwtService, jwtservice>();
 #endregion
 

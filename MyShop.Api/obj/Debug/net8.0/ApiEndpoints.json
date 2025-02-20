@@ -253,6 +253,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "MyShop.Api.Controllers.OrderFactoryController",
+    "Method": "CreateOrder",
+    "RelativePath": "api/Order/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "oDetailDtos",
+        "Type": "MyShop.Application.Dto.OrderDetail.ODetailDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "MyShop.Api.Controllers.ProductController",
     "Method": "GetProductByCategory",
     "RelativePath": "api/Product/search",
