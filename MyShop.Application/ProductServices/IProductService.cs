@@ -18,5 +18,10 @@ namespace MyShop.Application.ProductServices
 
         Task UpdateProduct(int Id,ProductVm productVm);
 
+        Task<List<ProductDto>> GetProductCategory(string categoryName);
+        Task<List<ProductDto>> SearchProdcuts(string search);
+
+        Task<List<ProductDto>> FilterProduct(string? catname, decimal? startprice, decimal? endprice);
+        Task<ProductDto> GetProductByName(string name);
     }
 }

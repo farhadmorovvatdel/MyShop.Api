@@ -16,7 +16,10 @@ namespace MyShop.Domain.Interface
         Task UpdateProdcut(int Id,Product product);
 
         Task CreateProduct(Product product);
-       
+        Task<List<Product>> GetProductsWithCategory(string catname);
+        Task<List<Product>> SearchProducts(string search);
+        Task<List<Product>> FilterProducts(string? catname, decimal? startprice , decimal? endprice);
+        Task<Product> GetProductByName(string name);
 
     }
 }

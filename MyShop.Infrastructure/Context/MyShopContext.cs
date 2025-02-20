@@ -21,5 +21,9 @@ namespace MyShop.Infrastructure.Context
         public DbSet<Role> roles { get; set; }
 
         public DbSet<Product> products { get; set; }    
+
+        public DbSet<Order> orders { get; set; }
+
+        public DbSet<OrderDetail> ordersDetail { get; set; }
     }
 }

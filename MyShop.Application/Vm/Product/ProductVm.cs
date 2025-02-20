@@ -25,7 +25,7 @@ namespace MyShop.Application.Vm.Product
         public string Description { get; set; }
         [Display(Name = " قیمت محصول ")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
-        [Range(0.01, 10000.00, ErrorMessage = "قیمت محصول باید بین {1} و {2} باشد")]
+        [Range(0.01, 10000000.00, ErrorMessage = "قیمت محصول باید بین {1} و {2} باشد")]
         public decimal Price { get; set; }
         [Display(Name = "تصویر محصول")]
         public string? ProductImage { get; set; }

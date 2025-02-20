@@ -112,6 +112,75 @@
   },
   {
     "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "GetProduct",
+    "RelativePath": "api/Admin/Product/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "CreateProduct",
+    "RelativePath": "api/Admin/product/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "MyShop.Application.Vm.Product.ProductVm",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "DeleteProduct",
+    "RelativePath": "api/Admin/Product/Delete/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "UpdateProdcut",
+    "RelativePath": "api/Admin/Product/Update/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "MyShop.Application.Vm.Product.ProductVm",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
     "Method": "ShowProducts",
     "RelativePath": "api/Admin/Products",
     "HttpMethod": "GET",
@@ -165,6 +234,80 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "ShowAllProducts",
+    "RelativePath": "api/AllProducts/query",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "GetProductByCategory",
+    "RelativePath": "api/Product/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "catname",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "ShowProductDeatil",
+    "RelativePath": "api/Products/detail/{productname}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productname",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "FilterProduct",
+    "RelativePath": "api/Products/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "catname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "startprice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "endprice",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {

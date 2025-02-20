@@ -29,6 +29,8 @@ namespace MyShop.Domain.Entites
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
         public int CategoryId { get; set; }
+
+        public List<OrderDetail> OrderDetails { get; set; }
         #endregion
 
 

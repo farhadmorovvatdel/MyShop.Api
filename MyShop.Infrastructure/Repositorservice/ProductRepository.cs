@@ -30,9 +30,10 @@ namespace MyShop.Infrastructure.Repositorservice
             await _context.SaveChangesAsync();
         }
 
+       
         public async Task<List<Product>> GetAllProducst()
         {
-            return await _context.products.Include(p=>p.Category).ToListAsync();
+            return await _context.products.Include(p => p.Category).ToListAsync();
         }
 
         public async Task<Product> GetById(int id)
@@ -40,9 +41,52 @@ namespace MyShop.Infrastructure.Repositorservice
             return await _context.products.FindAsync(id);
         }
 
-        public Task UpdateProdcut(int Id, Product product)
+        public async Task<List<Product>> GetProductsWithCategory(string catname)
         {
-            throw new NotImplementedException();
+            return await _context.products.Include(p => p.Category).Where(
+
+                p => p.Category.Name == catname).ToListAsync();
+        }
+
+        public async Task<List<Product>> SearchProducts(string search)
+        {
+            return await _context.products.Include(p=>p.Category).
+                Where(p=> p.Name.Contains(search) || p.Description.Contains(search)).ToListAsync();
+        }
+
+        public async Task UpdateProdcut(int Id, Product product)
+        {
+            var Product = await _context.products.FindAsync(Id);
+            _context.products.Update(Product);
+            await _context.SaveChangesAsync();
+        }
+        public Task<List<Product>> FilterProducts(string? catname, decimal? startprice, decimal? endprice)
+        {
+            var products=_context.products.AsQueryable();
+            if(catname == null && startprice !=null && endprice !=null)
+            {
+                products = products.Where(p => p.Price >= startprice && p.Price <= endprice);
+            }
+            else if(catname != null && startprice != null && endprice != null)
+            {
+                products = products.Where(p=>p.Category.Name ==catname &&  p.Price >= startprice && p.Price <= endprice);
+            }
+            else if(catname != null &&  startprice==null && endprice == null)
+            {
+                products=products.Where(p=>p.Category.Name==catname);
+            }
+            else
+            {
+                products = products;
+            }
+            return products.ToListAsync();
+        }
+
+        public async Task<Product> GetProductByName(string name)
+        {
+            var product= await _context.products.SingleOrDefaultAsync(p => p.Name == name);
+            return product;
+
         }
     }
 }

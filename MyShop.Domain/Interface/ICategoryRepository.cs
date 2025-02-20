@@ -17,5 +17,6 @@ namespace MyShop.Domain.Interface
         Task UpdateAsyncCategory(int Id,Category category);
 
         Task DeleteAsyncCategory(int Id);
+       
     }
 }
