@@ -26,7 +26,9 @@ namespace MyShop.Application.JwtService
                 new Claim(JwtRegisteredClaimNames.Sub,UserId.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, Email),
                 new Claim(ClaimTypes.Role,Role),
-                
+                new Claim(ClaimTypes.NameIdentifier,UserId.ToString()),
+
+
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
 
             };

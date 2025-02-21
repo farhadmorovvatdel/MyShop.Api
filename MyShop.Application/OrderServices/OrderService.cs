@@ -1,7 +1,8 @@
-﻿using AutoMapper.Configuration.Annotations;
+﻿using AutoMapper;
+using AutoMapper.Configuration.Annotations;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using MyShop.Application.Dto.OrderDetail;
-
+using MyShop.Application.Dto.User;
 using MyShop.Domain.Entites;
 using MyShop.Domain.Interface;
 using System;
@@ -17,10 +18,12 @@ namespace MyShop.Application.OrderServices
     {
         private readonly IOrderInterface _OrderRepository;
         private readonly IOrderDetailRepository _OrderDetailRepository;
-        public OrderService(IOrderInterface orderInterface, IOrderDetailRepository orderDetailRepository)
+        private readonly IMapper _mapper;
+        public OrderService(IOrderInterface orderInterface, IMapper mapper, IOrderDetailRepository orderDetailRepository)
         {
             _OrderDetailRepository = orderDetailRepository;
             _OrderRepository = orderInterface;
+            _mapper = mapper;
         }
 
 
@@ -62,10 +65,10 @@ namespace MyShop.Application.OrderServices
                 if (items != null)
                 {
                     items.Quantity += oDetailDtos.Quantity;
-                  
+
                     await _OrderDetailRepository.UpdateOrderDetail(items);
                     currentOrder.TotalAmount = currentOrder.OrderPriceTotal();
-                    
+
 
                 }
                 else
@@ -78,15 +81,22 @@ namespace MyShop.Application.OrderServices
                         Quantity = oDetailDtos.Quantity,
 
                     };
-                  
+
                     await _OrderDetailRepository.UpdateOrderDetail(ordedetails);
                     currentOrder.TotalAmount = currentOrder.OrderPriceTotal();
-                   
+
                 }
-                 await _OrderRepository.UpdateOrder(currentOrder);
-               
+                await _OrderRepository.UpdateOrder(currentOrder);
+
             }
 
+        }
+
+        public async Task<List<Order>> GetUserOrderDeatil(int UserId)
+        {
+            var order = await _OrderRepository.GetUserOrder(UserId);
+            return order;
+            
         }
     }
 }

@@ -17,6 +17,7 @@ namespace MyShop.Domain.Interface
 
         Task UpdateOrder(Order order);
         Task<Order> CheckExitsOrders(int UserId);
-
+        
+        Task<List<Order>> GetUserOrder(int UserId);
     }
 }

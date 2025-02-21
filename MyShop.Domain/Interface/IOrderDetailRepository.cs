@@ -11,5 +11,6 @@ namespace MyShop.Domain.Interface
     {
         Task<OrderDetail> CreateOrderDetail(OrderDetail orderDetail);
         Task UpdateOrderDetail(OrderDetail orderDetail);
+        Task<List<OrderDetail>> ShowUserOrderDetail(int UserId);
     }
 }

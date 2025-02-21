@@ -47,6 +47,11 @@ namespace MyShop.Infrastructure.Repositorservice
             return order;
         }
 
+        public async Task<List<Order>> GetUserOrder(int UserId)
+        {
+            return await _context.orders.Include(c=>c.Deatils).Where(c=>c.UserId==UserId && c.IsPay==false).ToListAsync();
+        }
+
         public async Task UpdateOrder(Order order)
         {
            

@@ -14,11 +14,13 @@ namespace MyShop.Api.Controllers
     public class OrderFactoryController : ControllerBase
     {
         private readonly IOrderService _orderService;
-        public OrderFactoryController(IOrderService orderService)
+        private readonly IHttpContextAccessor _contextAccessor;
+        public OrderFactoryController(IOrderService orderService, IHttpContextAccessor contextAccessor)
         {
             _orderService = orderService;
+            _contextAccessor = contextAccessor;
         }
-        
+
         [HttpPost("Order/Create")]
         [Authorize(Policy = "UserRole")]
         public async Task<IActionResult> CreateOrder([FromBody] ODetailDto oDetailDtos)
@@ -35,12 +37,18 @@ namespace MyShop.Api.Controllers
             await _orderService.CreateOrder(oDetailDtos,1);
 
           
-            return Ok("سفارش شما با موفقیت ایجاد شد"); 
+            return Ok("سفارش شما با موفقیت ایجاد شد");
         }
+        [Authorize(Policy ="UserRole")]
+        [HttpGet("Order/Detail")]
+        public async Task<IActionResult> ShowCartDetail()
+        {
+            var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
-        //public async Task<IActionResult> ShowCartDetail()
-        //{
-        //    return Ok();
-        //}
+            int userId = Convert.ToInt32(user);
+            
+            var UserOrderDetail = await _orderService.GetUserOrderDeatil(userId);
+            return Ok(UserOrderDetail);
+        }
     }
 }

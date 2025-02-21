@@ -1,4 +1,5 @@
-﻿using MyShop.Domain.Entites;
+﻿using Microsoft.EntityFrameworkCore;
+using MyShop.Domain.Entites;
 using MyShop.Domain.Interface;
 using MyShop.Infrastructure.Context;
 using System;
@@ -25,6 +26,11 @@ namespace MyShop.Infrastructure.Repositorservice
             await _context.SaveChangesAsync();
             return orderDetail;
             
+        }
+
+        public async Task<List<OrderDetail>> ShowUserOrderDetail(int UserId)
+        {
+            return await _context.ordersDetail.ToListAsync();
         }
 
         public async Task UpdateOrderDetail(OrderDetail orderDetail)

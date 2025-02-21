@@ -12,6 +12,7 @@ namespace MyShop.Application.OrderServices
     public interface IOrderService
     {
     Task CreateOrder(ODetailDto oDetailDtos, int UserId);
+    Task<List<Order>> GetUserOrderDeatil(int UserId);
 
        
     }

@@ -182,6 +182,18 @@
         }
       }
     },
+    "/api/Order/Detail": {
+      "get": {
+        "tags": [
+          "OrderFactory"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Admin/Products": {
       "get": {
         "tags": [

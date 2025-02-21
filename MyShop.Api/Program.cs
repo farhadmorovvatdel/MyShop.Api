@@ -57,7 +57,7 @@ builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IJwtService, jwtservice>();
 #endregion
-
+builder.Services.AddHttpContextAccessor();
 #region Authentication
 builder.Services.AddAuthentication(op =>
 {
