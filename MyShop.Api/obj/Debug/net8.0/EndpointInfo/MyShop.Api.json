@@ -194,6 +194,18 @@
         }
       }
     },
+    "/api/Order/Delete": {
+      "delete": {
+        "tags": [
+          "OrderFactory"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Admin/Products": {
       "get": {
         "tags": [

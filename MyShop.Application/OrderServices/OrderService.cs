@@ -92,6 +92,21 @@ namespace MyShop.Application.OrderServices
 
         }
 
+        public async Task DeteletUserOrder(int OrderId,int UserId)
+        {
+             await _OrderRepository.DeleteOrders(OrderId, UserId);
+        }
+
+        public async Task<Order> ExistOrderUser(int UserId)
+        {
+            return await _OrderRepository.CheckExitsOrders(UserId);
+        }
+
+        //public async Task<Order> ExistOrderUser(int UserId)
+        //{
+        //  return await _OrderRepository.CheckExitsUserOrder(UserId);
+        //}
+
         public async Task<List<Order>> GetUserOrderDeatil(int UserId)
         {
             var order = await _OrderRepository.GetUserOrder(UserId);

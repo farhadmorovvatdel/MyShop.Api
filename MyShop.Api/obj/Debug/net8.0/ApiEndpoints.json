@@ -270,6 +270,16 @@
   },
   {
     "ContainingType": "MyShop.Api.Controllers.OrderFactoryController",
+    "Method": "DeletOrder",
+    "RelativePath": "api/Order/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.OrderFactoryController",
     "Method": "ShowCartDetail",
     "RelativePath": "api/Order/Detail",
     "HttpMethod": "GET",

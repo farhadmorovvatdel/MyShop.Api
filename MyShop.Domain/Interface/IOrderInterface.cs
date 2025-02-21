@@ -11,7 +11,7 @@ namespace MyShop.Domain.Interface
     {
         Task<Order> CreateOrder(Order order);
 
-        Task DeleteOrders(int Id);
+        Task DeleteOrders(int OrderId,int UserId);
 
         Task<Order> GetOrdersById(int Id);
 

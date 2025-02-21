@@ -13,6 +13,8 @@ namespace MyShop.Application.OrderServices
     {
     Task CreateOrder(ODetailDto oDetailDtos, int UserId);
     Task<List<Order>> GetUserOrderDeatil(int UserId);
+    Task DeteletUserOrder(int OrderId,int UserId);
+    Task<Order> ExistOrderUser(int UserId);
 
        
     }

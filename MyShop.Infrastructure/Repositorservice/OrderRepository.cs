@@ -25,6 +25,7 @@ namespace MyShop.Infrastructure.Repositorservice
             
         }
 
+       
         public async Task<Order> CreateOrder(Order order)
         {
            
@@ -34,11 +35,16 @@ namespace MyShop.Infrastructure.Repositorservice
 
         }
 
-        public async Task DeleteOrders(int Id)
+        public async Task DeleteOrders(int OrderId,int UserId)
         {
-            var order=await GetOrdersById(Id);
-            _context.orders.Remove(order);
-            await _context.SaveChangesAsync();
+            var CurrentOrder = await _context.orders.FirstOrDefaultAsync(o => o.UserId == UserId &&o.Id==OrderId && o.IsPay == false);
+            if (CurrentOrder != null)
+            {
+                _context.orders.Remove(CurrentOrder);
+                await _context.SaveChangesAsync();
+            }
+            //throw new Exception("سفارشی وجود ندارد");
+                
         }
 
         public async Task<Order> GetOrdersById(int Id)
