@@ -16,9 +16,9 @@ namespace MyShop.Domain.Entites
         public string CommentBody { get; set; } 
 
 
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }=DateTime.Now;
 
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         #region #relations
         [ForeignKey(nameof(UserId))]

@@ -290,6 +290,70 @@
   },
   {
     "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "CreateComment",
+    "RelativePath": "api/Product/Comment/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentDto",
+        "Type": "MyShop.Application.Dto.Comment.CreateCommentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "DeleteComment",
+    "RelativePath": "api/Product/Comment/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "deleteDto",
+        "Type": "MyShop.Application.Dto.Comment.DeleteComment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "UpdateComment",
+    "RelativePath": "api/Product/Comment/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "commentDto",
+        "Type": "MyShop.Application.Dto.Comment.UpdateCommentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "LikePost",
+    "RelativePath": "api/Product/Like",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "like",
+        "Type": "MyShop.Application.Dto.Like.LikeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
     "Method": "GetProductByCategory",
     "RelativePath": "api/Product/search",
     "HttpMethod": "GET",

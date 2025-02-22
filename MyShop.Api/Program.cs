@@ -4,7 +4,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MyShop.Application.CategoryService;
 using MyShop.Application.CategoryServices;
+using MyShop.Application.CommentServices;
 using MyShop.Application.JwtService;
+using MyShop.Application.LikeServices;
 using MyShop.Application.OrderServices;
 using MyShop.Application.ProductServices;
 using MyShop.Application.RoleServices;
@@ -56,6 +58,10 @@ builder.Services.AddScoped<IOrderInterface,OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IJwtService, jwtservice>();
+builder.Services.AddScoped<ILikeRepository,LikeRepository>();
+builder.Services.AddScoped<ILIkeService,LikeService>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 #endregion
 builder.Services.AddHttpContextAccessor();
 #region Authentication

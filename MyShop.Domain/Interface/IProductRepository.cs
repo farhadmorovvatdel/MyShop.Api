@@ -11,7 +11,7 @@ namespace MyShop.Domain.Interface
     {
         Task<List<Product>> GetAllProducst();
         Task<Product> GetById(int id);
-
+        Task<int> GetProductId(int id);
         Task DeleteProduct(int id);
         Task UpdateProdcut(int Id,Product product);
 

@@ -158,7 +158,6 @@ C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\obj\Debug\net8.0\MyShop.Api.Ge
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\obj\Debug\net8.0\MyShop.Api.AssemblyInfoInputs.cache
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\obj\Debug\net8.0\MyShop.Api.AssemblyInfo.cs
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\obj\Debug\net8.0\MyShop.Api.csproj.CoreCompileInputs.cache
-C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\obj\Debug\net8.0\MyShop.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\obj\Debug\net8.0\MyShop.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\obj\Debug\net8.0\MyShop.Api.sourcelink.json
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\obj\Debug\net8.0\scopedcss\bundle\MyShop.Api.styles.css

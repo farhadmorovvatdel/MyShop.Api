@@ -13,7 +13,7 @@ namespace MyShop.Application.ProductServices
         Task AddProduct(ProductVm productVm);
         Task<List<ProductDto>> GetAllProducts();
         Task <ProductDto> GetProductById(int id);
-
+        Task<int> GetProductId(int id);
         Task DeleteProductById(int id);
 
         Task UpdateProduct(int Id,ProductVm productVm);

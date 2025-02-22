@@ -31,6 +31,10 @@ namespace MyShop.Domain.Entites
         public int CategoryId { get; set; }
 
         public List<OrderDetail> OrderDetails { get; set; }
+
+        public List<Like> Like { get; set; }=new List<Like>();
+
+        public List<Comment> Comment { get; set; }=new List<Comment>();
         #endregion
 
 

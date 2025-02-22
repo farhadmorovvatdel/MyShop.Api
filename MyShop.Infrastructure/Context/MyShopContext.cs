@@ -25,5 +25,9 @@ namespace MyShop.Infrastructure.Context
         public DbSet<Order> orders { get; set; }
 
         public DbSet<OrderDetail> ordersDetail { get; set; }
+
+        public DbSet<Like> likes { get; set; }
+
+        public DbSet<Comment> comments { get; set; }
     }
 }

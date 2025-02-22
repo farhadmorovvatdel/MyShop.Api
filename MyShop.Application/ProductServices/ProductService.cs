@@ -71,6 +71,12 @@ namespace MyShop.Application.ProductServices
             return _mapper.Map<List<ProductDto>>(products);
         }
 
+        public async Task<int> GetProductId(int id)
+        {
+            return await _productRepository.GetProductId(id);
+            
+        }
+
         public async Task<List<ProductDto>> SearchProdcuts(string search)
         {
             var products = await _productRepository.SearchProducts(search);

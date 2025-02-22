@@ -44,6 +44,69 @@ namespace MyShop.Infrastructure.Migrations
                     b.ToTable("categories");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entites.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CommentBody")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("comments");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entites.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsLiked")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("likes");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entites.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -203,6 +266,44 @@ namespace MyShop.Infrastructure.Migrations
                     b.ToTable("users");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entites.Comment", b =>
+                {
+                    b.HasOne("MyShop.Domain.Entites.Product", "Product")
+                        .WithMany("Comment")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyShop.Domain.Entites.User", "User")
+                        .WithMany("Comment")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entites.Like", b =>
+                {
+                    b.HasOne("MyShop.Domain.Entites.Product", "Product")
+                        .WithMany("Like")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyShop.Domain.Entites.User", "User")
+                        .WithMany("Like")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entites.OrderDetail", b =>
                 {
                     b.HasOne("MyShop.Domain.Entites.Product", "product")
@@ -212,7 +313,7 @@ namespace MyShop.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("MyShop.Domain.Entites.Order", "order")
-                        .WithMany("OrderDetails")
+                        .WithMany("Deatils")
                         .HasForeignKey("orderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -251,17 +352,28 @@ namespace MyShop.Infrastructure.Migrations
 
             modelBuilder.Entity("MyShop.Domain.Entites.Order", b =>
                 {
-                    b.Navigation("OrderDetails");
+                    b.Navigation("Deatils");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entites.Product", b =>
                 {
+                    b.Navigation("Comment");
+
+                    b.Navigation("Like");
+
                     b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entites.Role", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Entites.User", b =>
+                {
+                    b.Navigation("Comment");
+
+                    b.Navigation("Like");
                 });
 #pragma warning restore 612, 618
         }

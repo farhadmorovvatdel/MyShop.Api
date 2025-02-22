@@ -88,5 +88,11 @@ namespace MyShop.Infrastructure.Repositorservice
             return product;
 
         }
+
+        public async Task<int> GetProductId(int id)
+        {
+           var product= await _context.products.FindAsync(id);
+            return product.Id;
+        }
     }
 }
