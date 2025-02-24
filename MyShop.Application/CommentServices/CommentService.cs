@@ -51,7 +51,7 @@ namespace MyShop.Application.CommentServices
             comment.CommentBody = request.CommentBody;
             comment.UpdatedDate = DateTime.Now;
             comment.UserId = UserId;
-            await _commentRepository.UPdateCommment(UserId, comment);
+            await _commentRepository.UPdateCommment(UserId,comment);
             return _mapper.Map<ShowCommentDetail>(comment);
 
         }

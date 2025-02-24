@@ -253,6 +253,85 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "MyShop.Api.Controllers.DiscountController",
+    "Method": "CreateDiscount",
+    "RelativePath": "api/Discount/Admin/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "MyShop.Application.Dto.DiscountCode.CreateDiscountDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.DiscountController",
+    "Method": "DeleteDiscount",
+    "RelativePath": "api/Discount/Admin/Delete/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.DiscountController",
+    "Method": "GetDiscount",
+    "RelativePath": "api/Discount/Admin/detail/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.DiscountController",
+    "Method": "ShowDiscount",
+    "RelativePath": "api/Discount/Admin/ShowDiscount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.DiscountController",
+    "Method": "UpdateDisocunt",
+    "RelativePath": "api/Discount/Admin/update/{Id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "MyShop.Application.Dto.DiscountCode.UpdateDiscountCode",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "MyShop.Api.Controllers.OrderFactoryController",
     "Method": "CreateOrder",
     "RelativePath": "api/Order/Create",

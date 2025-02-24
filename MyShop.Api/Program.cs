@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using MyShop.Application.CategoryService;
 using MyShop.Application.CategoryServices;
 using MyShop.Application.CommentServices;
+using MyShop.Application.DiscountServices;
 using MyShop.Application.JwtService;
 using MyShop.Application.LikeServices;
 using MyShop.Application.OrderServices;
@@ -62,6 +63,8 @@ builder.Services.AddScoped<ILikeRepository,LikeRepository>();
 builder.Services.AddScoped<ILIkeService,LikeService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddScoped<IDiscountRepository,DiscountRepository>();
+builder.Services.AddScoped<IDiscountService,DiscountService>();
 #endregion
 builder.Services.AddHttpContextAccessor();
 #region Authentication

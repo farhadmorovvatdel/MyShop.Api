@@ -29,5 +29,8 @@ namespace MyShop.Infrastructure.Context
         public DbSet<Like> likes { get; set; }
 
         public DbSet<Comment> comments { get; set; }
+
+
+        public DbSet<DiscountCode> discounts { get; set; }
     }
 }
