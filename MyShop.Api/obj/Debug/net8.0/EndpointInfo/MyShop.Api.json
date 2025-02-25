@@ -265,7 +265,7 @@
       }
     },
     "/api/Discount/Admin/Delete/{Id}": {
-      "get": {
+      "delete": {
         "tags": [
           "Discount"
         ],

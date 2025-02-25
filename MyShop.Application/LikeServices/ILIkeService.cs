@@ -15,5 +15,6 @@ namespace MyShop.Application.LikeServices
         Task LikePost(LikeDto like);
         Task<LIkeDetailDto> CheckExistsLike(LikeDto like);
         Task RemoveProductLike(LikeDto like);
+        Task<int> GetAllLike(int ProductId);
     }
 }

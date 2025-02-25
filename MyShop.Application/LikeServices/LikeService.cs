@@ -26,6 +26,11 @@ namespace MyShop.Application.LikeServices
             return _mapper.Map<LIkeDetailDto>(ProductLike);
         }
 
+        public async Task<int> GetAllLike(int ProductId)
+        {
+            return await _likeRepository.GetAllLikes(ProductId);
+        }
+
         public async Task LikePost(LikeDto like)
         {
             var likeporst = new Like()

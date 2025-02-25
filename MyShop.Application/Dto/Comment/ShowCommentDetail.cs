@@ -14,6 +14,6 @@ namespace MyShop.Application.Dto.Comment
         public string Title { get; set; }
 
         public int UserId { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public string CreatedDate { get; set; }
     }
 }

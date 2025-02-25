@@ -272,7 +272,7 @@
     "ContainingType": "MyShop.Api.Controllers.DiscountController",
     "Method": "DeleteDiscount",
     "RelativePath": "api/Discount/Admin/Delete/{Id}",
-    "HttpMethod": "GET",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [

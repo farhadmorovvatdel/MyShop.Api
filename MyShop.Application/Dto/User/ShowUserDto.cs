@@ -17,7 +17,7 @@ namespace MyShop.Application.Dto.User
 
         public bool IsActive { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public string CreatedDate { get; set; }
 
 
     }

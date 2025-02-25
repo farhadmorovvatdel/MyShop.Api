@@ -14,5 +14,6 @@ namespace MyShop.Domain.Interface
         Task<Like> CheckExistLike(int UserId,int ProductId);
         Task RemoveLike(int UserId,Like like);
         Task<Like> GetLike(int UserId,int ProductId);
+        Task<int> GetAllLikes(int ProductId);
     }
 }

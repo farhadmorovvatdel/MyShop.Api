@@ -42,6 +42,11 @@ namespace MyShop.Infrastructure.Repositorservice
          return await _context.comments.FindAsync( Id);
         }
 
+        public async Task<int> GetCommentCount(int ProductId)
+        {
+          return await _context.comments.CountAsync(c=>c.ProductId == ProductId);
+        }
+
         public async Task UPdateCommment(int UserId, Comment comment)
         {
              _context.comments.Update(comment);

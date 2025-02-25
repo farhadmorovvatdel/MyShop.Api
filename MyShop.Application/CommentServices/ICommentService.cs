@@ -16,5 +16,6 @@ namespace MyShop.Application.CommentServices
 
         Task DeleteComment(int CommentId);
         Task<ShowCommentDetail> GetCommentById(int CommentId, int UserId,int ProductId);
+        Task<int> ProductComments(int ProductId);
     }
 }

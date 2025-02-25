@@ -14,6 +14,7 @@ namespace MyShop.Domain.Interface
         Task UPdateCommment(int UserId,Comment comment);
         Task DeletComment(int Id);
         Task<Comment> GetCommentById(int Id);
+        Task<int> GetCommentCount(int ProductId);
        
     }
 }

@@ -45,6 +45,11 @@ namespace MyShop.Application.CommentServices
             return _mapper.Map<ShowCommentDetail>(comment);
         }
 
+        public async Task<int> ProductComments(int ProductId)
+        {
+           return  await _commentRepository.GetCommentCount(ProductId);
+        }
+
         public async Task<ShowCommentDetail> UpdateComment(int UserId, UpdateCommentDto request)
         {
             var comment =await _commentRepository.GetComment(request.Id,UserId, request.ProductId);

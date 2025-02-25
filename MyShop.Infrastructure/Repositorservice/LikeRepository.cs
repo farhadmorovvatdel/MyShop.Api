@@ -42,6 +42,11 @@ namespace MyShop.Infrastructure.Repositorservice
             return await _context.likes.AnyAsync(l=>l.UserId==UserId && l.ProductId==ProductId && l.IsLiked==false);
         }
 
+        public async Task<int> GetAllLikes(int ProductId)
+        {
+            return await _context.likes.CountAsync(l=>l.ProductId==ProductId && l.IsLiked==true);
+        }
+
         public async Task<Like> GetLike(int UserId, int ProductId)
         {
            return await _context.likes.SingleOrDefaultAsync(l=>l.UserId==UserId&&l.ProductId==ProductId);

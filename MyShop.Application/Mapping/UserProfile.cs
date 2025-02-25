@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MyShop.Application.Dto.User;
+using MyShop.Application.Extensions;
 using MyShop.Domain.Entites;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace MyShop.Application.Mapping
     {
         public UserProfile()
         {
-            CreateMap<User,ShowUserDto>();
+            CreateMap<User,ShowUserDto>()
+                .ForMember(d=>d.CreatedDate,op=>op.MapFrom(s=>s.CreateDate.ShamsiDate().ToPersianNumber()));
         }
     }
 }

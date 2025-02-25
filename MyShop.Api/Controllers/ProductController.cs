@@ -127,11 +127,19 @@ namespace MyShop.Api.Controllers
         public async Task<IActionResult> ShowProductDeatil([FromRoute] string productname)
         {
             var product = await _productService.GetProductByName(productname);
+            var totalLikes = await _likeService.GetAllLike(product.Id);
             if (product == null)
             {
                 return NotFound("محصول مورد نظر یافت نشد");
             }
-            return Ok(product);
+            var totalComments = await _commentService.ProductComments(product.Id);
+            var result = new
+            {
+                Product = product,
+                TotalLikes = totalLikes,
+                TotalComments = totalComments
+            };
+            return Ok(result);
         }
         [Authorize(Policy = "UserRole")]
         [HttpPost("Product/Like")]
@@ -150,7 +158,7 @@ namespace MyShop.Api.Controllers
             }
             var LikedProduct=await _likeService.CheckExistsLike(like);
 
-                
+         
             if (LikedProduct == null)
             {
                 await _likeService.LikePost(like);
