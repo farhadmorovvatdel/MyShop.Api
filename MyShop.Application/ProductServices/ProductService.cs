@@ -38,37 +38,38 @@ namespace MyShop.Application.ProductServices
         public async Task DeleteProductById(int id)
         {
             var product = await _productRepository.GetById(id);
+             await _productRepository.DeleteProduct(product.Id);
         }
 
-        public async Task<List<ProductDto>> FilterProduct(string? catname, decimal? startprice, decimal? endprice)
+        public async Task<List<ShowProductDto>> FilterProduct(string? catname, decimal? startprice, decimal? endprice)
         {
             var products = await _productRepository.FilterProducts(catname, startprice, endprice);
-            return _mapper.Map<List<ProductDto>>(products);
+            return _mapper.Map<List<ShowProductDto>>(products);
         }
 
-        public async Task<List<ProductDto>> GetAllProducts()
+        public async Task<List<ShowProductDto>> GetAllProducts()
         {
 
             var products = await _productRepository.GetAllProducst();
-            return _mapper.Map<List<ProductDto>>(products);
+            return _mapper.Map<List<ShowProductDto>>(products);
         }
 
-        public async Task<ProductDto> GetProductById(int id)
+        public async Task<ShowProductDto> GetProductById(int id)
         {
             var product = await _productRepository.GetById(id);
-            return _mapper.Map<ProductDto>(product);
+            return _mapper.Map<ShowProductDto>(product);
         }
 
-        public async Task<ProductDto> GetProductByName(string name)
+        public async Task<ShowProductDto> GetProductByName(string name)
         {
             var product=await _productRepository.GetProductByName(name);
-            return _mapper.Map<ProductDto>(product);    
+            return _mapper.Map<ShowProductDto>(product);    
         }
 
-        public async Task<List<ProductDto>> GetProductCategory(string categoryName)
+        public async Task<List<ShowProductDto>> GetProductCategory(string categoryName)
         {
             var products = await _productRepository.GetProductsWithCategory(categoryName);
-            return _mapper.Map<List<ProductDto>>(products);
+            return _mapper.Map<List<ShowProductDto>>(products);
         }
 
         public async Task<int> GetProductId(int id)
@@ -77,10 +78,10 @@ namespace MyShop.Application.ProductServices
             
         }
 
-        public async Task<List<ProductDto>> SearchProdcuts(string search)
+        public async Task<List<ShowProductDto>> SearchProdcuts(string search)
         {
             var products = await _productRepository.SearchProducts(search);
-            return _mapper.Map<List<ProductDto>>(products);
+            return _mapper.Map<List<ShowProductDto>>(products);
         }
 
         public async Task UpdateProduct(int Id, ProductVm productVm)

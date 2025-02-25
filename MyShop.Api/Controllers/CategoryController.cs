@@ -11,7 +11,7 @@ namespace MyShop.Api.Controllers
 {
     [Route("api/Admin/")]
     [ApiController]
-    [Authorize(Policy = "AdminRole")]
+    //[Authorize(Policy = "AdminRole")]
     public class CategoryController : ControllerBase
     {
         private readonly CategoryServiceInterface _categoryService;

@@ -11,6 +11,7 @@ using MyShop.Application.Dto.User;
 using AutoMapper;
 using System.Net.Http.Headers;
 using MyShop.Application.Vm.User;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace MyShop.Application.UserService
 {
@@ -87,6 +88,13 @@ namespace MyShop.Application.UserService
             };
             var loginuser = await _userRepository.LoginUser(user);
             return loginuser;
+        }
+
+        public async Task<ShowUserDto> ShowUserInfo(int Id)
+        {
+            var user =await _userRepository.GetUserById(Id);
+            return _mapper.Map<ShowUserDto>(user);
+           
         }
     }
 }

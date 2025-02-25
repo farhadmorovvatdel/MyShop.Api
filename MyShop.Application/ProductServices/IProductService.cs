@@ -11,17 +11,17 @@ namespace MyShop.Application.ProductServices
     public interface IProductService
     {
         Task AddProduct(ProductVm productVm);
-        Task<List<ProductDto>> GetAllProducts();
-        Task <ProductDto> GetProductById(int id);
+        Task<List<ShowProductDto>> GetAllProducts();
+        Task <ShowProductDto> GetProductById(int id);
         Task<int> GetProductId(int id);
         Task DeleteProductById(int id);
 
         Task UpdateProduct(int Id,ProductVm productVm);
 
-        Task<List<ProductDto>> GetProductCategory(string categoryName);
-        Task<List<ProductDto>> SearchProdcuts(string search);
+        Task<List<ShowProductDto>> GetProductCategory(string categoryName);
+        Task<List<ShowProductDto>> SearchProdcuts(string search);
 
-        Task<List<ProductDto>> FilterProduct(string? catname, decimal? startprice, decimal? endprice);
-        Task<ProductDto> GetProductByName(string name);
+        Task<List<ShowProductDto>> FilterProduct(string? catname, decimal? startprice, decimal? endprice);
+        Task<ShowProductDto> GetProductByName(string name);
     }
 }

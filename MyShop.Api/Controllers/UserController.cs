@@ -9,6 +9,7 @@ using MyShop.Application.UserService;
 using MyShop.Application.Vm.User;
 using MyShop.Domain.Entites;
 using MyShop.Infrastructure.Migrations;
+using System.Security.Claims;
 
 namespace MyShop.Api.Controllers
 {
@@ -104,7 +105,19 @@ namespace MyShop.Api.Controllers
             var token= _jwtService.GenerateToken(user.Id, user.Email,rolname);
             return Ok(new { Token = token });
         }
-        
+        [Authorize(Policy="UserRole")]
+        [HttpGet("User/Profile")]
+        public async Task<IActionResult> UserProfile()
+        {
+            var userId = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            if (userId == 0)
+            {
+                return Unauthorized();
+            }
+            var user=await _userService.GetUserById(userId);
+            return Ok(user);
+
+        }
        
     }
 }

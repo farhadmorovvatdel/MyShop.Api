@@ -14,8 +14,14 @@ namespace MyShop.Application.Mapping
     {
         public UserProfile()
         {
-            CreateMap<User,ShowUserDto>()
-                .ForMember(d=>d.CreatedDate,op=>op.MapFrom(s=>s.CreateDate.ShamsiDate().ToPersianNumber()));
+            CreateMap<User, ShowUserDto>()
+                .ForMember(d => d.CreatedDate, op => op.MapFrom(s => s.CreateDate.ShamsiDate().ToPersianNumber()))
+                .ForMember(d => d.PhoneNumber, op => op.MapFrom(s => s.PhoneNumber.ToPersianNumber()));
+                
+           
+                
+                
+                
         }
     }
 }

@@ -14,9 +14,9 @@ namespace MyShop.Application.Mapping
     {
         public ProductProfile()
         {
-            CreateMap<Product, ProductDto>()
-                .ForMember(des => des.Created, op => op.MapFrom(s => s.Created.ShamsiDate().ToPersianNumber()));
-                //.ForMember(des => des.Price, op => op.MapFrom(s => s.Price.ToRial().ToPersianNumber()));
+            CreateMap<Product, ShowProductDto>()
+                .ForMember(des => des.Created, op => op.MapFrom(s => s.Created.ShamsiDate().ToPersianNumber()))
+                .ForMember(des => des.Price, op => op.MapFrom(s => s.Price.ToRial().ToPersianNumber()));
         }
     }
 }

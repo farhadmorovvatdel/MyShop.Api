@@ -17,5 +17,6 @@ namespace MyShop.Domain.Interface
 
         Task DeleteUser(int Id);
         Task<User> LoginUser(User user);
+       
     }
 }

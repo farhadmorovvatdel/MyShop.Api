@@ -18,5 +18,7 @@ namespace MyShop.Application.UserService
         Task<ShowUserDto> GetUserById(int Id);
         Task AdminDeleteUser (int Id);
         Task<User> LoginUser(LoginUserVm loginUserVm);
+
+        Task<ShowUserDto> ShowUserInfo(int Id);
     }
 }

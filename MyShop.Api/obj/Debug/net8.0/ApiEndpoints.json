@@ -599,5 +599,15 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.UserController",
+    "Method": "UserProfile",
+    "RelativePath": "api/User/Profile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]
