@@ -1,3 +1,5 @@
+using FluentValidation;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -6,12 +8,15 @@ using MyShop.Application.CategoryService;
 using MyShop.Application.CategoryServices;
 using MyShop.Application.CommentServices;
 using MyShop.Application.DiscountServices;
+using MyShop.Application.FluentValidation;
 using MyShop.Application.JwtService;
 using MyShop.Application.LikeServices;
 using MyShop.Application.OrderServices;
 using MyShop.Application.ProductServices;
+using MyShop.Application.RatesServices;
 using MyShop.Application.RoleServices;
 using MyShop.Application.UserService;
+using MyShop.Application.Vm.Product;
 using MyShop.Domain.Interface;
 using MyShop.Domain.Jwt;
 using MyShop.Infrastructure.Context;
@@ -65,6 +70,10 @@ builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IDiscountRepository,DiscountRepository>();
 builder.Services.AddScoped<IDiscountService,DiscountService>();
+builder.Services.AddScoped<IRateRepository, RateRepository>();
+builder.Services.AddScoped<IRateService, RateService>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateProductValidator>();
+
 #endregion
 builder.Services.AddHttpContextAccessor();
 #region Authentication
@@ -89,6 +98,17 @@ builder.Services.AddAuthentication(op =>
     };
 });
 #endregion
+
+//builder.Services.AddHangfire(op =>
+//{
+//    op.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+//    .UseSimpleAssemblyNameTypeSerializer().
+//    UseRecommendedSerializerSettings().
+//    UseSqlServerStorage(builder.Configuration.GetConnectionString("HangFireConnection"));
+//});
+builder.Services.AddHangfireServer();
+
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
@@ -104,5 +124,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseHangfireDashboard();
 
+//RecurringJob.AddOrUpdate<ProductService>("delete-Orders", op => op.DeleteProductById(5), "*/1 * * * *");
 app.Run();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Hangfire;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -36,6 +37,8 @@ namespace MyShop.Api.Controllers
             await _userService.CreatUser(model);
             return Created();
         }
+
+       
         [Authorize(Policy = "AdminRole")]
         [HttpGet("Admin/user/{Id:int}")]
         public async Task<IActionResult> GetUser([FromRoute] int Id)
@@ -47,7 +50,7 @@ namespace MyShop.Api.Controllers
             }
             return Ok(user);
         }
-        [Authorize(Policy ="AdminRole")]
+        //[Authorize(Policy ="AdminRole")]
         [HttpGet("Admin/users")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -57,6 +60,7 @@ namespace MyShop.Api.Controllers
             {
                 return NotFound("هیچ کاربری وجود ندارد");
             }
+            BackgroundJob.Enqueue(() => Console.WriteLine("hellow rold"));
             return Ok(users);
         }
         [Authorize(Policy = "AdminRole")]

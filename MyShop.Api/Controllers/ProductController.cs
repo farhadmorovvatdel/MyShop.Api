@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -7,10 +8,13 @@ using Microsoft.Identity.Client;
 using MyShop.Application.CommentServices;
 using MyShop.Application.Dto.Comment;
 using MyShop.Application.Dto.Like;
+using MyShop.Application.Dto.Rate;
 using MyShop.Application.LikeServices;
 using MyShop.Application.ProductServices;
+using MyShop.Application.RatesServices;
 using MyShop.Application.Vm.Product;
 using MyShop.Domain.Entites;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
@@ -23,11 +27,15 @@ namespace MyShop.Api.Controllers
         private readonly IProductService _productService;
         private readonly ILIkeService _likeService;
         private readonly ICommentService _commentService;
-        public ProductController(IProductService productService, ILIkeService lIkeService,ICommentService commentService)
+        private readonly IRateService _ratingService;
+        private readonly IValidator<ProductVm> _validator;
+        public ProductController(IProductService productService, ILIkeService lIkeService,ICommentService commentService,IRateService ratingService,IValidator<ProductVm> validator)
         {
             _productService = productService;
             _likeService = lIkeService;
             _commentService = commentService;
+            _ratingService = ratingService;
+            _validator = validator;
         }
         [HttpGet("Admin/Products")]
         public async Task<IActionResult> ShowProducts()
@@ -42,10 +50,15 @@ namespace MyShop.Api.Controllers
         [HttpPost("Admin/product/create")]
         public async Task<IActionResult> CreateProduct([FromBody] ProductVm model)
         {
-            if (model == null)
+            FluentValidation.Results.ValidationResult result = await _validator.ValidateAsync(model);
+             if (!result.IsValid)
             {
-                return BadRequest("فیلدهای ورود صحیح نمی باشد");
+                return BadRequest(result.Errors.Select(e => e.ErrorMessage));
             }
+            //if (model == null)
+            //{
+            //    return BadRequest("فیلدهای ورود صحیح نمی باشد");
+            //}
             await _productService.AddProduct(model);
             return Ok("محصول با موئفقیت ایجاد شد");
         }
@@ -132,12 +145,14 @@ namespace MyShop.Api.Controllers
             {
                 return NotFound("محصول مورد نظر یافت نشد");
             }
+            var productRate=await _ratingService.GetRateAverage(product.Id);
             var totalComments = await _commentService.ProductComments(product.Id);
             var result = new
             {
                 Product = product,
                 TotalLikes = totalLikes,
-                TotalComments = totalComments
+                TotalComments = totalComments,
+                ProductRate = productRate,
             };
             return Ok(result);
         }
@@ -210,6 +225,28 @@ namespace MyShop.Api.Controllers
             await _commentService.DeleteComment(comment.Id);
             return Ok("کامنت شما با موفقیت حذف شد");
            
+        }
+        [Authorize(Policy ="UserRole")]
+        [HttpPost("Product/Rate")]
+        public async Task<IActionResult> CreateRate(CreateRateDto createRateDto)
+        {
+            var UserId = Convert.ToInt32(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            var ProductId=createRateDto.ProductId;
+
+            if(UserId == 0)
+            {
+                return Unauthorized();
+            }
+            
+            bool checkUserRate=await _ratingService.GetUserRate(UserId, ProductId);
+            if (!checkUserRate)
+            {
+                await _ratingService.AddRate(UserId, createRateDto);
+                return Ok("رای شما با موفقیت ثبت شد");
+            }
+            return BadRequest(" شما قبلا به این محصول امتیاز داده اید");
+           
+            
         }
 
 

@@ -41,6 +41,7 @@ namespace MyShop.Domain.Entites
 
         public List<Like> Like { get; set; }=new List<Like>();
         public List<Comment> Comment { get; set; }=new List<Comment>();
+        public List<Rate> Rate { get; set; }=new List<Rate>();
 
         #endregion
 

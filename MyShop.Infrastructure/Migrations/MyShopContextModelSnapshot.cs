@@ -225,6 +225,32 @@ namespace MyShop.Infrastructure.Migrations
                     b.ToTable("products");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entites.Rate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("RateNumber")
+                        .HasColumnType("real");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("rates");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entites.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -361,6 +387,25 @@ namespace MyShop.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("MyShop.Domain.Entites.Rate", b =>
+                {
+                    b.HasOne("MyShop.Domain.Entites.Product", "product")
+                        .WithMany("Rate")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyShop.Domain.Entites.User", "user")
+                        .WithMany("Rate")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("product");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("MyShop.Domain.Entites.User", b =>
                 {
                     b.HasOne("MyShop.Domain.Entites.Role", "Role")
@@ -389,6 +434,8 @@ namespace MyShop.Infrastructure.Migrations
                     b.Navigation("Like");
 
                     b.Navigation("OrderDetails");
+
+                    b.Navigation("Rate");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Entites.Role", b =>
@@ -401,6 +448,8 @@ namespace MyShop.Infrastructure.Migrations
                     b.Navigation("Comment");
 
                     b.Navigation("Like");
+
+                    b.Navigation("Rate");
                 });
 #pragma warning restore 612, 618
         }

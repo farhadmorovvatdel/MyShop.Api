@@ -733,6 +733,42 @@
         }
       }
     },
+    "/api/Product/Rate": {
+      "post": {
+        "tags": [
+          "Product"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRateDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Role": {
       "get": {
         "tags": [
@@ -1153,6 +1189,26 @@
         },
         "additionalProperties": false
       },
+      "CreateRateDto": {
+        "required": [
+          "productId",
+          "ratenumber"
+        ],
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ratenumber": {
+            "maximum": 5,
+            "minimum": 0,
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "additionalProperties": false
+      },
       "DeleteComment": {
         "type": "object",
         "properties": {
@@ -1227,28 +1283,17 @@
         "additionalProperties": false
       },
       "ProductVm": {
-        "required": [
-          "categoryId",
-          "description",
-          "name",
-          "price"
-        ],
         "type": "object",
         "properties": {
           "name": {
-            "maxLength": 50,
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "description": {
-            "maxLength": 150,
-            "minLength": 1,
             "type": "string",
-            "format": "multiline"
+            "nullable": true
           },
           "price": {
-            "maximum": 10000000,
-            "minimum": 0.01,
             "type": "number",
             "format": "double"
           },

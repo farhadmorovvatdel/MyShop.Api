@@ -433,6 +433,22 @@
   },
   {
     "ContainingType": "MyShop.Api.Controllers.ProductController",
+    "Method": "CreateRate",
+    "RelativePath": "api/Product/Rate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createRateDto",
+        "Type": "MyShop.Application.Dto.Rate.CreateRateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MyShop.Api.Controllers.ProductController",
     "Method": "GetProductByCategory",
     "RelativePath": "api/Product/search",
     "HttpMethod": "GET",

@@ -32,5 +32,7 @@ namespace MyShop.Infrastructure.Context
 
 
         public DbSet<DiscountCode> discounts { get; set; }
+
+        public DbSet<Rate> rates { get; set; }
     }
 }
