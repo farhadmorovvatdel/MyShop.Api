@@ -205,3 +205,5 @@ C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\bin\Debug\net8.0\sv\Hangfire.C
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\bin\Debug\net8.0\tr-TR\Hangfire.Core.resources.dll
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\bin\Debug\net8.0\zh-TW\Hangfire.Core.resources.dll
 C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\bin\Debug\net8.0\zh\Hangfire.Core.resources.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\bin\Debug\net8.0\Autofac.dll
+C:\Users\fmoro\source\repos\MyShop.Api\MyShop.Api\bin\Debug\net8.0\Autofac.Extensions.DependencyInjection.dll

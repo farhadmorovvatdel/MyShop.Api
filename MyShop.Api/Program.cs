@@ -1,3 +1,5 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using FluentValidation;
 using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -22,6 +24,7 @@ using MyShop.Domain.Jwt;
 using MyShop.Infrastructure.Context;
 using MyShop.Infrastructure.Repositorservice;
 using Newtonsoft.Json;
+using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 
@@ -44,6 +47,9 @@ builder.Services.AddAuthorization(op =>
     op.AddPolicy("UserRole", p => p.RequireClaim(ClaimTypes.Role, "User"));
     op.AddPolicy("AdminRole", policy => policy.RequireClaim(ClaimTypes.Role,"Admin"));
 });
+
+
+
 #endregion
 builder.Services.AddDbContext<MyShopContext>(op =>
 {
@@ -52,28 +58,42 @@ builder.Services.AddDbContext<MyShopContext>(op =>
 var jwtSettings = builder.Configuration.GetSection("JwtSetting").Get<JwtSetting>();
 builder.Services.Configure<JwtSetting>(builder.Configuration.GetSection("JwtSetting"));
 #region Service And Repository
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<CategoryServiceInterface, Categoryservice>();
-builder.Services.AddScoped<IUserInterface, UserRepository>();
-builder.Services.AddScoped<IUserServiceInterface, UserService>();
-builder.Services.AddScoped<IRoleInterface, RoleRepository>();
-builder.Services.AddScoped<IRoleServiceInterface, RoleService>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IOrderInterface,OrderRepository>();
-builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
-builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddScoped<IJwtService, jwtservice>();
-builder.Services.AddScoped<ILikeRepository,LikeRepository>();
-builder.Services.AddScoped<ILIkeService,LikeService>();
-builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<ICommentService, CommentService>();
-builder.Services.AddScoped<IDiscountRepository,DiscountRepository>();
-builder.Services.AddScoped<IDiscountService,DiscountService>();
-builder.Services.AddScoped<IRateRepository, RateRepository>();
-builder.Services.AddScoped<IRateService, RateService>();
+//builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+//builder.Services.AddScoped<CategoryServiceInterface, Categoryservice>();
+//builder.Services.AddScoped<IUserInterface, UserRepository>();
+//builder.Services.AddScoped<IUserServiceInterface, UserService>();
+//builder.Services.AddScoped<IRoleInterface, RoleRepository>();
+//builder.Services.AddScoped<IRoleServiceInterface, RoleService>();
+//builder.Services.AddScoped<IProductRepository, ProductRepository>();
+//builder.Services.AddScoped<IProductService, ProductService>();
+//builder.Services.AddScoped<IOrderInterface,OrderRepository>();
+//builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+//builder.Services.AddScoped<IOrderService, OrderService>();
+//builder.Services.AddScoped<IJwtService, jwtservice>();
+//builder.Services.AddScoped<ILikeRepository,LikeRepository>();
+//builder.Services.AddScoped<ILIkeService,LikeService>();
+//builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+//builder.Services.AddScoped<ICommentService, CommentService>();
+//builder.Services.AddScoped<IDiscountRepository,DiscountRepository>();
+//builder.Services.AddScoped<IDiscountService,DiscountService>();
+//builder.Services.AddScoped<IRateRepository, RateRepository>();
+//builder.Services.AddScoped<IRateService, RateService>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProductValidator>();
-
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(c =>
+{
+    var assembley = Assembly.GetExecutingAssembly();
+    c.RegisterAssemblyTypes(assembley).AsImplementedInterfaces().InstancePerLifetimeScope();
+    c.RegisterAssemblyTypes(Assembly.Load("MyShop.Domain"))
+        .AsImplementedInterfaces()
+        .InstancePerLifetimeScope();
+    c.RegisterAssemblyTypes(Assembly.Load("MyShop.Infrastructure"))
+       .AsImplementedInterfaces()
+       .InstancePerLifetimeScope();
+    c.RegisterAssemblyTypes(Assembly.Load("MyShop.Application"))
+     .AsImplementedInterfaces()
+     .InstancePerLifetimeScope();
+});
 #endregion
 builder.Services.AddHttpContextAccessor();
 #region Authentication
@@ -106,7 +126,7 @@ builder.Services.AddAuthentication(op =>
 //    UseRecommendedSerializerSettings().
 //    UseSqlServerStorage(builder.Configuration.GetConnectionString("HangFireConnection"));
 //});
-builder.Services.AddHangfireServer();
+//builder.Services.AddHangfireServer();
 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -124,7 +144,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseHangfireDashboard();
+//app.UseHangfireDashboard();
 
 //RecurringJob.AddOrUpdate<ProductService>("delete-Orders", op => op.DeleteProductById(5), "*/1 * * * *");
 app.Run();
