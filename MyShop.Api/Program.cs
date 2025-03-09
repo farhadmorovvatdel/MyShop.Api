@@ -93,6 +93,9 @@ builder.Host.ConfigureContainer<ContainerBuilder>(c =>
     c.RegisterAssemblyTypes(Assembly.Load("MyShop.Application"))
      .AsImplementedInterfaces()
      .InstancePerLifetimeScope();
+    c.RegisterAssemblyTypes(Assembly.Load("MyShop.Api"))
+     .AsImplementedInterfaces()
+     .InstancePerLifetimeScope();
 });
 #endregion
 builder.Services.AddHttpContextAccessor();
