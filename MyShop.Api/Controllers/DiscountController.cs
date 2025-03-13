@@ -16,7 +16,11 @@ namespace MyShop.Api.Controllers
         {
             _discountService = discountService;
         }
-
+        /// <summary>
+        /// ایجاد کد تخفیف
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost("Create")]
         public async Task<IActionResult> CreateDiscount(CreateDiscountDto dto)
         {
@@ -35,6 +39,10 @@ namespace MyShop.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        /// <summary>
+        /// مشاهده کد تخفیف
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("ShowDiscount")]
         public async Task<IActionResult> ShowDiscount()
         {
@@ -45,6 +53,11 @@ namespace MyShop.Api.Controllers
             }
             return Ok(dsicounts);
         }
+        /// <summary>
+        /// گرفتن کد تخفف با ایدی
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpGet("detail/{Id:int}")]
         public async Task<IActionResult> GetDiscount(int Id)
         {
@@ -55,6 +68,12 @@ namespace MyShop.Api.Controllers
             }
             return Ok(discount);
         }
+        /// <summary>
+        /// ویرایش کد تخفیف
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="dto"></param>
+        /// <returns></returns>
 
         [HttpPut("update/{Id:int}")]
         public async Task<IActionResult> UpdateDisocunt([FromRoute] int Id, [FromBody] UpdateDiscountCode dto)
@@ -79,7 +98,11 @@ namespace MyShop.Api.Controllers
             }
             
         }
-
+        /// <summary>
+        /// حذف کد تعفیف
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpDelete("Delete/{Id:int}")]
         public async Task<IActionResult> DeleteDiscount([FromRoute] int Id)
         {
